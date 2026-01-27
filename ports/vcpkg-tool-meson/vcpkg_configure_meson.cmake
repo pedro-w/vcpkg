@@ -356,24 +356,24 @@ function(vcpkg_generate_meson_cmd_args)
     if(IS_CROSS)
         # VCPKG_CROSSCOMPILING is not used since it regresses a lot of ports in x64-windows-x triplets
         # For consistency this should proably be changed in the future?
-        vcpkg_list(APPEND arg_OPTIONS --native "${SCRIPTS}/buildsystems/meson/none.txt")
-        vcpkg_list(APPEND arg_OPTIONS --cross "${meson_input_file_${buildtype}}")
+        vcpkg_list(APPEND arg_OPTIONS --native-file "${SCRIPTS}/buildsystems/meson/none.txt")
+        vcpkg_list(APPEND arg_OPTIONS --cross-file "${meson_input_file_${buildtype}}")
     else()
-        vcpkg_list(APPEND arg_OPTIONS --native "${meson_input_file_${buildtype}}")
+        vcpkg_list(APPEND arg_OPTIONS --native-file "${meson_input_file_${buildtype}}")
     endif()
 
     # User provided cross/native files
     if(VCPKG_MESON_NATIVE_FILE)
-        vcpkg_list(APPEND arg_OPTIONS --native "${VCPKG_MESON_NATIVE_FILE}")
+        vcpkg_list(APPEND arg_OPTIONS --native-file "${VCPKG_MESON_NATIVE_FILE}")
     endif()
     if(VCPKG_MESON_NATIVE_FILE_${buildtype})
-        vcpkg_list(APPEND arg_OPTIONS --native "${VCPKG_MESON_NATIVE_FILE_${buildtype}}")
+        vcpkg_list(APPEND arg_OPTIONS --native-file "${VCPKG_MESON_NATIVE_FILE_${buildtype}}")
     endif()
     if(VCPKG_MESON_CROSS_FILE)
-        vcpkg_list(APPEND arg_OPTIONS --cross "${VCPKG_MESON_CROSS_FILE}")
+        vcpkg_list(APPEND arg_OPTIONS --cross-file "${VCPKG_MESON_CROSS_FILE}")
     endif()
     if(VCPKG_MESON_CROSS_FILE_${buildtype})
-        vcpkg_list(APPEND arg_OPTIONS --cross "${VCPKG_MESON_CROSS_FILE_${buildtype}}")
+        vcpkg_list(APPEND arg_OPTIONS --cross-file "${VCPKG_MESON_CROSS_FILE_${buildtype}}")
     endif()
 
     vcpkg_list(APPEND arg_OPTIONS --libdir lib) # else meson install into an architecture describing folder
